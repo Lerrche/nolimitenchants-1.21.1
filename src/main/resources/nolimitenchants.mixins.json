@@ -1,8 +1,13 @@
 {
   "required": true,
   "package": "com.nolimitenchants.mixin",
+  "minVersion": "0.8.6",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "EnchantmentMixin",
+    "AnvilMenuMixin",
+    "ItemCombinerMenuAccessor"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

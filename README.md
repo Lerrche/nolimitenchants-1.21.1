@@ -1,25 +1,24 @@
+# No Limit Enchants (NeoForge 1.21.1)
 
-Installation information
-=======
+## Build
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+Requires Java 21. Run `gradlew.bat clean build` on Windows. The built mod will be in `build/libs/`.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+## Enchanting Infuser dependency
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+The development runtime declares Enchanting Infuser and its required Puzzles Lib library in Gradle.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+For a regular Minecraft launcher/modpack profile, dependencies are not bundled into the No Limit Enchants JAR. Install **Puzzles Lib for NeoForge 1.21.1, version 21.1.38 or newer**, into the *same profile's* `mods` folder as Enchanting Infuser. Restart Minecraft afterwards. Use the NeoForge build, not Fabric or Forge.
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+Puzzles Lib download page: https://modrinth.com/mod/puzzles-lib/versions?g=1.21.1&l=neoforge
+
+## Commands
+
+Use `/nolimitenchants max <level>` as an operator/cheat-enabled player to set the global enchantment cap. The vanilla enchantment storage format still limits stored levels to 255.
+
+## Compatibility fixes
+
+- Enchantment levels above X are displayed as Roman numerals (for example, Efficiency XXVIII).
+- Anvil results preserve over-level enchantments from either input instead of downgrading them to their vanilla level. Equal-level merges can still add one level, up to the configured global cap. Existing levels are not lowered if the configured cap is later reduced.
+- Provides Roman-numeral language entries for `enchantment.level.11` through `enchantment.level.255` in English and Russian. This fixes screens such as Enchanting Infuser that translate those keys directly rather than calling `Enchantment.getFullname()`.
+

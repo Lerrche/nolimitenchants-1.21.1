@@ -19,6 +19,23 @@ sourceSets.main.resources {
 }
 
 repositories {
+    // CurseForge Maven hosts Puzzles Lib, a required dependency of Enchanting Infuser.
+    maven {
+        name = "CurseMaven"
+        url = "https://cursemaven.com"
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 base {
@@ -76,6 +93,12 @@ configurations {
 }
 
 dependencies {
+    // Enchanting Infuser for Minecraft 1.21.1 / NeoForge. It remains a separate runtime mod.
+    implementation "maven.modrinth:ePv85y52:AoOYPAOZ"
+
+    // Enchanting Infuser requires Puzzles Lib 21.1.38 or newer.
+    // This also makes the dependency available to Gradle's runClient environment.
+    implementation "curse.maven:puzzles-lib-495476:6874068"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

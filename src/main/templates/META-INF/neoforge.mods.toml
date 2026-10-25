@@ -13,10 +13,10 @@ version="${mod_version}" #mandatory
 
 displayName="${mod_name}" #mandatory
 
-#authors=""
+authors="Lerche"
 
 description='''
-Example mod description.
+compatible with enchanting infuser use /nolimitenchants max <num> to edit
 '''
 
 [[mixins]]
@@ -37,4 +37,11 @@ config="${mod_id}.mixins.json"
     type="required"
     versionRange="${minecraft_version_range}"
     ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="enchantinginfuser"
+    type="optional"
+    versionRange="[21.1.0,)"
+    ordering="AFTER"
     side="BOTH"
